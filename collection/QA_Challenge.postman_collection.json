@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "2c5e8c46-30de-4b4c-9143-2d563ba70405",
+		"name": "QA Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Validate JSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"eval(globals.postmanBDD);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response time is less than \" + responseTimeParam + \"ms\"] = responseTime < responseTimeParam;",
+							"tests['The Content-Type is JSON'] = postman.getResponseHeader('Content-Type').has('application/json');",
+							"",
+							"var schema = {",
+							"\t\"definitions\": {},",
+							"\t\"title\": \"Root\", ",
+							"\t\"type\": \"array\",",
+							"\t\"default\": [],",
+							"\t\"items\":{",
+							"\t\t\"$id\": \"#root/items\", ",
+							"\t\t\"title\": \"Items\", ",
+							"\t\t\"type\": \"object\",",
+							"\t\t\"required\": [",
+							"\t\t\t\"plateNo\",",
+							"\t\t\t\"driverName\",",
+							"\t\t\t\"lat\",",
+							"\t\t\t\"lng\",",
+							"\t\t\t\"location\",",
+							"\t\t\t\"lastUpdated\",",
+							"\t\t],",
+							"\t\t\"properties\": {",
+							"\t\t\t\"plateNo\": {",
+							"\t\t\t\t\"$id\": \"#root/items/plateNo\", ",
+							"\t\t\t\t\"title\": \"Plateno\", ",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"pattern\": \"^.*$\"",
+							"\t\t\t},",
+							"\t\t\t\"driverName\": {",
+							"\t\t\t\t\"$id\": \"#root/items/driverName\", ",
+							"\t\t\t\t\"title\": \"Drivername\", ",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"pattern\": \"^.*$\"",
+							"\t\t\t},",
+							"\t\t\t\"lat\": {",
+							"\t\t\t\t\"$id\": \"#root/items/lat\", ",
+							"\t\t\t\t\"title\": \"Lat\", ",
+							"\t\t\t\t\"type\": \"number\",",
+							"\t\t\t\t\"default\": 0.0",
+							"\t\t\t},",
+							"\t\t\t\"lng\": {",
+							"\t\t\t\t\"$id\": \"#root/items/lng\", ",
+							"\t\t\t\t\"title\": \"Lng\", ",
+							"\t\t\t\t\"type\": \"number\",",
+							"\t\t\t\t\"default\": 0.0",
+							"\t\t\t},",
+							"\t\t\t\"location\": {",
+							"\t\t\t\t\"$id\": \"#root/items/location\", ",
+							"\t\t\t\t\"title\": \"Location\", ",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"pattern\": \"^.*$\"",
+							"\t\t\t},",
+							"\t\t\t\"imageURL\": {",
+							"\t\t\t\t\"$id\": \"#root/items/imageURL\", ",
+							"\t\t\t\t\"title\": \"Imageurl\", ",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"pattern\": \"^.*$\"",
+							"\t\t\t},",
+							"\t\t\t\"lastUpdated\": {",
+							"\t\t\t\t\"$id\": \"#root/items/lastUpdated\", ",
+							"\t\t\t\t\"title\": \"Lastupdated\", ",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"pattern\": \"^.*$\"",
+							"\t\t\t}",
+							"\t\t}",
+							"\t}",
+							"",
+							"}",
+							"",
+							"var update = JSON.parse(responseBody);",
+							"pm.test('Schema is validated for '+ request.name, function() {  ",
+							"    pm.expect(tv4.validate(update, schema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/candidate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"candidate"
+					]
+				},
+				"description": "Write an API test to validate the JSON schema and to make sure all the values are\npresent in the API (imageURL is optional). Expecting 2 outputs"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"postman.setGlobalVariable(\"response_time\", 25000);",
+					"responseTimeParam = postman.getGlobalVariable('response_time');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
