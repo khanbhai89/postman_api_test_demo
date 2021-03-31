@@ -1,9 +1,12 @@
 ## Testing API endpoints (tests/api) 
 
+[![Build Status](https://travis-ci.org/khanbhai89/QA_Challenge.svg?branch=main)](https://travis-ci.org/khanbhai89/QA_Challenge)
 
 **Youtube Video**
 
 Here is the link for youtube video for more details: 
+
+[![Youtube Video](https://img.youtube.com/vi/dKOzrdhRuIs/0.jpg)](https://youtu.be/dKOzrdhRuIs)
 
 
 **API test use cases**
