@@ -6,7 +6,7 @@ set -e;
 # UNCOMMENT BELOW TO RUN TEST LOCALL JSON COLLECTION
 
 docker run -v "$PWD":/etc/newman -t postman/newman:ubuntu \
-    run "collection/QA_Challenge.postman_collection.json" \
+    run "collection/QA_DEMO.postman_collection.json" \
     --environment  "environments/production.postman_environment.json" \
     --delay-request 1000    \
     --suppress-exit-code    \
