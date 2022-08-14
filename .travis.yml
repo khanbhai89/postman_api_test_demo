@@ -11,4 +11,4 @@ before_script:
   - node_modules/.bin/newman --version
 
 script:
-  - node_modules/.bin/newman run collection/QA_Challenge.postman_collection.json -e environments/production.postman_environment.json
+  - node_modules/.bin/newman run collection/QA_DEMO.postman_collection.json -e environments/production.postman_environment.json
